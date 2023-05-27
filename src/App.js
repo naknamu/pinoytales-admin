@@ -9,6 +9,7 @@ import AllAuthors from "./pages/AllAuthors";
 
 // Components 
 import SidebarLinks from "./components/SidebarLinks";
+import TaleDetail from "./pages/TaleDetail";
 
 const PagesWrapper = styled.div`
   padding-inline: 15rem;
@@ -24,7 +25,10 @@ function App() {
         <PagesWrapper>
           <Routes>
             <Route path="/" element={ <Home />} />
+
             <Route path="/tales" element={ <AllTales />} />
+            <Route path="/tales/:taletitle" element={ <TaleDetail />} />
+
             <Route path="/genres" element={ <AllGenres />} />
             <Route path="/authors" element={ <AllAuthors />} />
           </Routes>

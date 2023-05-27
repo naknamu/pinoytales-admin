@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import config from "../config";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const TaleStyled = styled.div`
   display: grid;
@@ -26,7 +27,7 @@ const AllTales = () => {
             <h1>All tales</h1>
             {tales.map((tale) => (
                 <li key={tale._id}>
-                <a href="/">{tale.title}</a>
+                <Link to={`${tale.slug}`}>{tale.title}</Link>
                 </li>
             ))}
         </TaleStyled>

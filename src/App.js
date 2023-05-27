@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 // Pages
 import Home from "./pages/Home";
+import AllTales from "./pages/AllTales";
+import AllGenres from "./pages/AllGenres";
+import AllAuthors from "./pages/AllAuthors";
 
 // Components 
 import SidebarLinks from "./components/SidebarLinks";
@@ -21,6 +24,9 @@ function App() {
         <PagesWrapper>
           <Routes>
             <Route path="/" element={ <Home />} />
+            <Route path="/tales" element={ <AllTales />} />
+            <Route path="/genres" element={ <AllGenres />} />
+            <Route path="/authors" element={ <AllAuthors />} />
           </Routes>
         </PagesWrapper>
       </BrowserRouter>

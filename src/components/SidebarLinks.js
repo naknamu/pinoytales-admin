@@ -31,24 +31,24 @@ const SidebarLinks = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/posts">All Tales</Link>
+            <Link to="/tales">All Tales</Link>
           </li>
           <li>
-            <Link to="/categories">All Genres</Link>
+            <Link to="/genres">All Genres</Link>
           </li>
           <li>
-            <Link to="/tags">All Authors</Link>
+            <Link to="/authors">All Authors</Link>
           </li>
         </SidebarWrapper>
         <SidebarWrapper>
           <li>
-            <Link to="/post/create">Create new tale</Link>
+            <Link to="/tale/create">Create new tale</Link>
           </li>
           <li>
-            <Link to="/category/create">Create new genre</Link>
+            <Link to="/genre/create">Create new genre</Link>
           </li>
           <li>
-            <Link to="/tag/create">Create new author</Link>
+            <Link to="/author/create">Create new author</Link>
           </li>
         </SidebarWrapper>
       </SidebarLink>

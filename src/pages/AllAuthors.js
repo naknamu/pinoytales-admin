@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import config from "../config";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const AuthorStyled = styled.div`
   display: grid;
@@ -26,7 +27,7 @@ const AllAuthors= () => {
             <h1>All authors</h1>
             {authors.map((author) => (
                 <li key={author._id}>
-                <a href="/">{author.name}</a>
+                <Link to={`${author.slug}`}>{author.name}</Link>
                 </li>
             ))}
         </AuthorStyled>

@@ -50,7 +50,7 @@ const TaleDetail = () => {
 
             <Wrapper>
                 <h2>Author: </h2>
-                <h2><Link to="/">{tale.author.name}</Link></h2>
+                <h2><Link to={`/authors/${tale.author.slug}`}>{tale.author.name}</Link></h2>
             </Wrapper>
             
             <Wrapper>

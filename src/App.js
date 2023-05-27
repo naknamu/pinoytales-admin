@@ -11,6 +11,7 @@ import AllAuthors from "./pages/AllAuthors";
 import SidebarLinks from "./components/SidebarLinks";
 import TaleDetail from "./pages/TaleDetail";
 import GenreDetail from "./pages/GenreDetail";
+import AuthorDetail from "./pages/AuthorDetails";
 
 const PagesWrapper = styled.div`
   padding-inline: 15rem;
@@ -34,6 +35,7 @@ function App() {
             <Route path="/genres/:genrename" element={ <GenreDetail />} />
 
             <Route path="/authors" element={ <AllAuthors />} />
+            <Route path="/authors/:authorname" element={ <AuthorDetail />} />
           </Routes>
         </PagesWrapper>
       </BrowserRouter>

@@ -7,3 +7,8 @@ html {
 body {
     background: #FBF0D9;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}

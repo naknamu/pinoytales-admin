@@ -42,7 +42,22 @@ const TaleDetail = () => {
 
     return ( 
         <div className="tale-detail">
-            <img src={tale.banner_url} alt="banner" width={250} />
+            {/* <img src={tale.banner_url} alt="banner" width={250} /> */}
+            <picture>
+            {tale.banner_url.map((banner) => (
+                <>
+                    <source srcSet={banner} />
+                    {banner.includes("webp") && (
+                    <img
+                        src={banner}
+                        alt={`${tale.title} banner`}
+                        width="400"
+                        height="400"
+                    />
+                    )}
+                </>
+                ))}
+            </picture>
             <Wrapper>
                 <h1>Title: </h1>
                 <h1>{tale.title}</h1>

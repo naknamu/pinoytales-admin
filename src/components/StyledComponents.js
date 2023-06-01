@@ -58,6 +58,7 @@ const DeleteBtn = styled.button`
   font-weight: 700;
   border-radius: 8px;
   cursor: pointer;
+  color: white;
 
   :hover {
     opacity: 0.8;
@@ -65,10 +66,6 @@ const DeleteBtn = styled.button`
 
   :active {
     opacity: 1;
-  }
-
-  a {
-    color: white;
   }
 `;
 
@@ -101,11 +98,11 @@ const ButtonWrapper = styled.div`
   margin-top: 3rem;
 `;
 
-export { 
-    FormWrapper,
-    InputField, 
-    SubmitBtn,
-    DeleteBtn,
-    UpdateBtn,
-    ButtonWrapper
+export {
+  FormWrapper,
+  InputField,
+  SubmitBtn,
+  DeleteBtn,
+  UpdateBtn,
+  ButtonWrapper,
 };

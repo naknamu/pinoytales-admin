@@ -1,14 +1,14 @@
 html {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 body {
-    background: lightslategray;
+  background: lightslategray;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }

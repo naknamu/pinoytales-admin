@@ -8,30 +8,30 @@ const AuthorStyled = styled.div`
   gap: 1rem;
 `;
 
-const AllAuthors= () => {
-    const [authors, setAuthors] = useState([]);
+const AllAuthors = () => {
+  const [authors, setAuthors] = useState([]);
 
-    useEffect(() => {
-        const fetchAllAuthors= async () => {
-          const response = await fetch(`${config.apiUrl}/authors`);
-          const data = await response.json();
-    
-          setAuthors(data);
-        };
-    
-        fetchAllAuthors();
-    }, []);
+  useEffect(() => {
+    const fetchAllAuthors = async () => {
+      const response = await fetch(`${config.apiUrl}/authors`);
+      const data = await response.json();
 
-    return ( 
-        <AuthorStyled>
-            <h1>All authors</h1>
-            {authors.map((author) => (
-                <li key={author._id}>
-                <Link to={`${author.slug}`}>{author.name}</Link>
-                </li>
-            ))}
-        </AuthorStyled>
-     );
-}
- 
+      setAuthors(data);
+    };
+
+    fetchAllAuthors();
+  }, []);
+
+  return (
+    <AuthorStyled>
+      <h1>All authors</h1>
+      {authors.map((author) => (
+        <li key={author._id}>
+          <Link to={`${author.slug}`}>{author.name}</Link>
+        </li>
+      ))}
+    </AuthorStyled>
+  );
+};
+
 export default AllAuthors;

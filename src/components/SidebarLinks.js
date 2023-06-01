@@ -21,38 +21,36 @@ const SidebarWrapper = styled.ul`
   }
 `;
 
-
 const SidebarLinks = () => {
+  return (
+    <SidebarLink>
+      <SidebarWrapper>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/tales">All Tales</Link>
+        </li>
+        <li>
+          <Link to="/genres">All Genres</Link>
+        </li>
+        <li>
+          <Link to="/authors">All Authors</Link>
+        </li>
+      </SidebarWrapper>
+      <SidebarWrapper>
+        <li>
+          <Link to="/tale/create">Create new tale</Link>
+        </li>
+        <li>
+          <Link to="/genre/create">Create new genre</Link>
+        </li>
+        <li>
+          <Link to="/author/create">Create new author</Link>
+        </li>
+      </SidebarWrapper>
+    </SidebarLink>
+  );
+};
 
-    return (
-      <SidebarLink>
-        <SidebarWrapper>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/tales">All Tales</Link>
-          </li>
-          <li>
-            <Link to="/genres">All Genres</Link>
-          </li>
-          <li>
-            <Link to="/authors">All Authors</Link>
-          </li>
-        </SidebarWrapper>
-        <SidebarWrapper>
-          <li>
-            <Link to="/tale/create">Create new tale</Link>
-          </li>
-          <li>
-            <Link to="/genre/create">Create new genre</Link>
-          </li>
-          <li>
-            <Link to="/author/create">Create new author</Link>
-          </li>
-        </SidebarWrapper>
-      </SidebarLink>
-    );
-  };
-  
-  export default SidebarLinks;
+export default SidebarLinks;

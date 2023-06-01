@@ -8,7 +8,6 @@ const BannerField = styled.input`
   font-size: 1rem;
   width: 90%;
 
-
   :focus {
     border: 1px solid hsl(175, 98%, 24%);
     outline: none;
@@ -16,15 +15,15 @@ const BannerField = styled.input`
 `;
 
 const BannerInput = ({ handleBanner }) => {
-    return ( 
+  return (
     <BannerField
-        type="text"
-        name="bannerUrl"
-        id="bannerUrl"
-        onChange={(e) => handleBanner(e)}
-        required
+      type="text"
+      name="bannerUrl"
+      id="bannerUrl"
+      onChange={(e) => handleBanner(e)}
+      required
     />
-    );
-}
- 
+  );
+};
+
 export default BannerInput;

@@ -68,7 +68,7 @@ const BannerWrapper = styled.div`
   gap: 1rem;
 `;
 
-const TaleForm = () => {
+const TaleUpdateForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [authors, setAuthors] = useState([]);
@@ -228,4 +228,4 @@ const TaleForm = () => {
   );
 };
 
-export default TaleForm;
+export default TaleUpdateForm;

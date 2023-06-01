@@ -9,29 +9,29 @@ const TaleStyled = styled.div`
 `;
 
 const AllTales = () => {
-    const [tales, setTales] = useState([]);
+  const [tales, setTales] = useState([]);
 
-    useEffect(() => {
-        const fetchAllTales = async () => {
-          const response = await fetch(`${config.apiUrl}/tales`);
-          const data = await response.json();
-    
-          setTales(data);
-        };
-    
-        fetchAllTales();
-    }, []);
+  useEffect(() => {
+    const fetchAllTales = async () => {
+      const response = await fetch(`${config.apiUrl}/tales`);
+      const data = await response.json();
 
-    return ( 
-        <TaleStyled>
-            <h1>All tales</h1>
-            {tales.map((tale) => (
-                <li key={tale._id}>
-                <Link to={`${tale.slug}`}>{tale.title}</Link>
-                </li>
-            ))}
-        </TaleStyled>
-     );
-}
- 
+      setTales(data);
+    };
+
+    fetchAllTales();
+  }, []);
+
+  return (
+    <TaleStyled>
+      <h1>All tales</h1>
+      {tales.map((tale) => (
+        <li key={tale._id}>
+          <Link to={`${tale.slug}`}>{tale.title}</Link>
+        </li>
+      ))}
+    </TaleStyled>
+  );
+};
+
 export default AllTales;

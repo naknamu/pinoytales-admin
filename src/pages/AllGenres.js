@@ -8,30 +8,30 @@ const GenreStyled = styled.div`
   gap: 1rem;
 `;
 
-const AllGenres= () => {
-    const [genres, setGenres] = useState([]);
+const AllGenres = () => {
+  const [genres, setGenres] = useState([]);
 
-    useEffect(() => {
-        const fetchAllGenres= async () => {
-          const response = await fetch(`${config.apiUrl}/genres`);
-          const data = await response.json();
-    
-          setGenres(data);
-        };
-    
-        fetchAllGenres();
-    }, []);
+  useEffect(() => {
+    const fetchAllGenres = async () => {
+      const response = await fetch(`${config.apiUrl}/genres`);
+      const data = await response.json();
 
-    return ( 
-        <GenreStyled>
-            <h1>All genres</h1>
-            {genres.map((genre) => (
-                <li key={genre._id}>
-                <Link to={`${genre.slug}`}>{genre.name}</Link>
-                </li>
-            ))}
-        </GenreStyled>
-     );
-}
- 
+      setGenres(data);
+    };
+
+    fetchAllGenres();
+  }, []);
+
+  return (
+    <GenreStyled>
+      <h1>All genres</h1>
+      {genres.map((genre) => (
+        <li key={genre._id}>
+          <Link to={`${genre.slug}`}>{genre.name}</Link>
+        </li>
+      ))}
+    </GenreStyled>
+  );
+};
+
 export default AllGenres;

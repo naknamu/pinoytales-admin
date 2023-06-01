@@ -12,6 +12,7 @@ import SidebarLinks from "./components/SidebarLinks";
 import TaleDetail from "./pages/TaleDetail";
 import GenreDetail from "./pages/GenreDetail";
 import AuthorDetail from "./pages/AuthorDetails";
+import TaleForm from "./pages/TaleForm";
 
 const PagesWrapper = styled.div`
   padding-inline: 15rem;
@@ -30,6 +31,7 @@ function App() {
 
             <Route path="/tales" element={ <AllTales />} />
             <Route path="/tales/:taletitle" element={ <TaleDetail />} />
+            <Route path="/tale/create" element={ <TaleForm />} />
 
             <Route path="/genres" element={ <AllGenres />} />
             <Route path="/genres/:genrename" element={ <GenreDetail />} />

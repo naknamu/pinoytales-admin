@@ -24,7 +24,7 @@ const TaleDetail = () => {
     const { taletitle } = useParams();
     const [tale, setTale] = useState(null);
   
-    const fetchBlogPost = async () => {
+    const fetchTale = async () => {
       const response = await fetch(`${config.apiUrl}/tales/${taletitle}`);
       const data = await response.json();
   
@@ -32,7 +32,7 @@ const TaleDetail = () => {
     };
   
     useEffect(() => {
-      fetchBlogPost();
+      fetchTale();
       // eslint-disable-next-line
     }, [taletitle]);
 
@@ -42,7 +42,7 @@ const TaleDetail = () => {
 
     return ( 
         <div className="tale-detail">
-            {/* <img src={tale.banner_url} alt="banner" width={250} /> */}
+
             <picture>
             {tale.banner_url.map((banner) => (
                 <>

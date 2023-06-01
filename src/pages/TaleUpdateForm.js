@@ -9,6 +9,7 @@ import {
   SubmitBtn,
 } from "../components/StyledComponents";
 import BannerInput from "../components/BannerInput";
+import { useParams } from "react-router";
 
 const SelectField = styled.div`
   display: flex;
@@ -69,6 +70,7 @@ const BannerWrapper = styled.div`
 `;
 
 const TaleUpdateForm = () => {
+  const { taleid } = useParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [authors, setAuthors] = useState([]);
@@ -78,7 +80,6 @@ const TaleUpdateForm = () => {
   const [selectedAuthor, setSelectedAuthor] = useState("");
   const [checkedGenres, setCheckedGenres] = useState([]);
 
-  const [bannerCounter, setBannerCounter] = useState([0]);
   const navigate = useNavigate();
 
   const handleChange = (value) => {
@@ -98,7 +99,7 @@ const TaleUpdateForm = () => {
 
     console.log(newTale);
 
-    const response = await fetch(`${config.apiUrl}/tale/create`, {
+    const response = await fetch(`${config.apiUrl}/tale/${taleid}/update`, {
       method: "POST",
       body: JSON.stringify(newTale),
       headers: {
@@ -132,15 +133,28 @@ const TaleUpdateForm = () => {
     }
   };
 
-  const handleBanner = (e) => {
-    setBannerUrl((banner) => [...banner, e.target.value]);
+  const handleBanner = (e, index) => {
+    const newBannerUrl = [...bannerUrl];
+    newBannerUrl[index] = e.target.value;
+    setBannerUrl(newBannerUrl);
   };
 
   const handleAddBanner = () => {
-    setBannerCounter([...bannerCounter, bannerCounter.length]);
+    setBannerUrl([...bannerUrl, ""]);
   };
 
   useEffect(() => {
+    const fetchTale = async () => {
+        const response = await fetch(`${config.apiUrl}/tale/${taleid}/update`);
+        const data = await response.json();
+  
+        setTitle(data.title);
+        setContent(data.content);
+        setSelectedAuthor(data.author);
+        setCheckedGenres(data.genre);
+        setBannerUrl(data.banner_url);
+    };
+
     const fetchAuthorsAndGenres = async () => {
       const [authors, genres] = await Promise.all([
         (await fetch(`${config.apiUrl}/authors`)).json(),
@@ -152,11 +166,12 @@ const TaleUpdateForm = () => {
     };
 
     fetchAuthorsAndGenres();
-  }, []);
+    fetchTale();
+  }, [taleid]);
 
   return (
     <>
-      <h1>Create a Tale</h1>
+      <h1>Update Tale</h1>
       <FormWrapper onSubmit={(e) => handleSubmit(e)}>
         <InputField>
           <label htmlFor="title">Title: </label>
@@ -197,9 +212,10 @@ const TaleUpdateForm = () => {
               <input
                 type="checkbox"
                 name="genres"
-                id={genres._id}
+                id={genre._id}
                 value={genre._id}
                 onChange={(e) => handleCheckbox(e)}
+                checked={checkedGenres.includes(genre._id)}
               />
               <label htmlFor="genres">{genre.name}</label>
             </div>
@@ -207,10 +223,10 @@ const TaleUpdateForm = () => {
         </GenresField>
 
         <label htmlFor="bannerUrl">Banner URL: </label>
-        {bannerCounter &&
-          bannerCounter.map((element, index) => (
+        {bannerUrl &&
+          bannerUrl.map((banner, index) => (
             <BannerWrapper key={index}>
-              <BannerInput handleBanner={handleBanner} />
+              <BannerInput bannerUrl={banner} handleBanner={handleBanner} index={index} />
               <BannerButton type="button" onClick={handleAddBanner}>
                 +
               </BannerButton>

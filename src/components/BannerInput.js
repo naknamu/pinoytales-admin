@@ -14,14 +14,15 @@ const BannerField = styled.input`
   }
 `;
 
-const BannerInput = ({ handleBanner }) => {
+const BannerInput = ({ bannerUrl, handleBanner, index }) => {
   return (
     <BannerField
       type="text"
       name="bannerUrl"
       id="bannerUrl"
-      onChange={(e) => handleBanner(e)}
+      onChange={(e) => handleBanner(e, index)}
       required
+      value={bannerUrl || ''}
     />
   );
 };

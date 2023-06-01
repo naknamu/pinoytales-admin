@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { DeleteBtn, UpdateBtn, ButtonWrapper } from "../components/StyledComponents";
 import MarkdownPreview from "../components/MarkdownPreview";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
 const Wrapper = styled.div`
     display: flex;
@@ -23,6 +24,8 @@ const TaleDetail = () => {
 
     const { taletitle } = useParams();
     const [tale, setTale] = useState(null);
+
+    const navigate = useNavigate();
   
     const fetchTale = async () => {
       const response = await fetch(`${config.apiUrl}/tales/${taletitle}`);
@@ -40,23 +43,32 @@ const TaleDetail = () => {
         return <div>Loading....</div>;
     }
 
+    const handleDelete = async (taleid) => {
+        const response = await fetch(`${config.apiUrl}/tale/${taleid}/delete`, {
+          method: "POST",
+        });
+    
+        const data = await response.json();
+        if (response.ok) {
+          navigate("/tales");
+        } else {
+          console.error(data.error);
+        }
+    };
+
     return ( 
         <div className="tale-detail">
 
             <picture>
-            {tale.banner_url.map((banner) => (
-                <>
-                    <source srcSet={banner} />
-                    {banner.includes("webp") && (
-                    <img
-                        src={banner}
-                        alt={`${tale.title} banner`}
-                        width="400"
-                        height="400"
-                    />
-                    )}
-                </>
+                {tale.banner_url.map((banner, index) => (
+                    <source key={index} srcSet={banner} />
                 ))}
+                <img
+                    src={`${tale.banner_url.find((banner) => banner.includes('.webp')) || tale.banner_url[0]}`}
+                    alt={`${tale.title} banner`}
+                    width="400"
+                    height="400"
+                />
             </picture>
             <Wrapper>
                 <h1>Title: </h1>
@@ -84,7 +96,7 @@ const TaleDetail = () => {
 
 
             <ButtonWrapper>
-                <DeleteBtn>
+                <DeleteBtn onClick={() => handleDelete(tale._id)}>
                 <Link to="/tales">Delete</Link>
                 </DeleteBtn>
 

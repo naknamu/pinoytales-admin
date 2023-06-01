@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import config from "../config";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import MarkdownEditor from "../components/MarkdownEditor";
 import { InputField, FormWrapper, SubmitBtn } from "../components/StyledComponents";
@@ -75,7 +75,7 @@ const TaleForm = () => {
   const [checkedGenres, setCheckedGenres] = useState([]);
 
   const [bannerCounter, setBannerCounter] = useState([0]);
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (value) => {
     setContent(value);
@@ -88,25 +88,28 @@ const TaleForm = () => {
       title,
       content,
       author: selectedAuthor,
-      genres: checkedGenres,
+      genre: checkedGenres,
       banner_url: bannerUrl,
     };
 
     console.log(newTale);
 
-    // const response = await fetch(`${config.apiUrl}/post/create`, {
-    //   method: "POST",
-    //   body: JSON.stringify(newTale),
-    // });
+    const response = await fetch(`${config.apiUrl}/tale/create`, {
+      method: "POST",
+      body: JSON.stringify(newTale),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    // const data = await response.json();
+    const data = await response.json();
 
-    // if (response.ok) {
-    //   // Redirect to list of tales
-    //   navigate("/tales");
-    // } else {
-    //   console.error(data.error);
-    // }
+    if (response.ok) {
+      // Redirect to list of tales
+      navigate("/tales");
+    } else {
+      console.error(data.error);
+    }
   };
 
   const handleCheckbox = (e) => {

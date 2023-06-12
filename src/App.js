@@ -14,6 +14,8 @@ import GenreDetail from "./pages/GenreDetail";
 import AuthorDetail from "./pages/AuthorDetails";
 import TaleForm from "./pages/TaleForm";
 import TaleUpdateForm from "./pages/TaleUpdateForm";
+import GenreForm from "./pages/GenreForm";
+import GenreUpdateForm from "./pages/GenreUpdateForm";
 
 const PagesWrapper = styled.div`
   padding-inline: 15rem;
@@ -37,6 +39,8 @@ function App() {
 
             <Route path="/genres" element={<AllGenres />} />
             <Route path="/genres/:genrename" element={<GenreDetail />} />
+            <Route path="/genre/create" element={<GenreForm />} />
+            <Route path="/genre/:genreid/update" element={<GenreUpdateForm />} />
 
             <Route path="/authors" element={<AllAuthors />} />
             <Route path="/authors/:authorname" element={<AuthorDetail />} />

@@ -7,11 +7,13 @@ import {
   UpdateBtn,
   ButtonWrapper,
 } from "../components/StyledComponents";
+import { useNavigate } from "react-router";
 
 const GenreDetail = () => {
   const { genrename } = useParams();
   const [genre, setGenre] = useState(null);
   const [tales, setTales] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGenre = async () => {
@@ -24,9 +26,25 @@ const GenreDetail = () => {
     fetchGenre();
   }, [genrename]);
 
-  const handleDelete = async (genrename) => {
-    console.log("Delete genre:" + genrename);
+  const handleDelete = async (genreid) => {
+    const response = await fetch(
+      `${config.apiUrl}/genre/${genreid}/delete`,
+      {
+        method: "POST"
+      }
+    );
+    const data = await response.json();
+
+    if (response.ok) {
+      navigate("/genres");
+    } else {
+      console.error(data.error);
+    }
   };
+
+  const handleUpdate = (genreid) => {
+    navigate(`/genre/${genreid}/update`);
+  }
 
   if (!genre && !tales) {
     return <div>Loading....</div>;
@@ -46,11 +64,11 @@ const GenreDetail = () => {
 
       <ButtonWrapper>
         <DeleteBtn onClick={() => handleDelete(genre._id)}>
-          <Link to="/genres">Delete</Link>
+          Delete
         </DeleteBtn>
 
-        <UpdateBtn>
-          <Link to={`/genre/${genre._id}/update`}>Update</Link>
+        <UpdateBtn onClick={() => handleUpdate(genre._id)}>
+          Update
         </UpdateBtn>
       </ButtonWrapper>
     </div>

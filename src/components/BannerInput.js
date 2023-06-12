@@ -22,7 +22,7 @@ const BannerInput = ({ bannerUrl, handleBanner, index }) => {
       id="bannerUrl"
       onChange={(e) => handleBanner(e, index)}
       required
-      value={bannerUrl || ''}
+      defaultValue={bannerUrl || ''}
     />
   );
 };

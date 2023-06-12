@@ -132,8 +132,11 @@ const TaleForm = () => {
     }
   };
 
-  const handleBanner = (e) => {
-    setBannerUrl((banner) => [...banner, e.target.value]);
+  const handleBanner = (e, index) => {
+    // setBannerUrl((banner) => [...banner, e.target.value]);
+    const newBannerUrl = [...bannerUrl];
+    newBannerUrl[index] = e.target.value;
+    setBannerUrl(newBannerUrl);
   };
 
   const handleAddBanner = () => {
@@ -208,9 +211,9 @@ const TaleForm = () => {
 
         <label htmlFor="bannerUrl">Banner URL: </label>
         {bannerCounter &&
-          bannerCounter.map((element, index) => (
+          bannerCounter.map((banner, index) => (
             <BannerWrapper key={index}>
-              <BannerInput handleBanner={handleBanner} />
+              <BannerInput bannerUrl={null} handleBanner={handleBanner} index={index} />
               <BannerButton type="button" onClick={handleAddBanner}>
                 +
               </BannerButton>

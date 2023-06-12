@@ -16,6 +16,8 @@ import TaleForm from "./pages/TaleForm";
 import TaleUpdateForm from "./pages/TaleUpdateForm";
 import GenreForm from "./pages/GenreForm";
 import GenreUpdateForm from "./pages/GenreUpdateForm";
+import AuthorForm from "./pages/AuthorForm";
+import AuthorUpdateForm from "./pages/AuthorUpdateForm";
 
 const PagesWrapper = styled.div`
   padding-inline: 15rem;
@@ -44,6 +46,9 @@ function App() {
 
             <Route path="/authors" element={<AllAuthors />} />
             <Route path="/authors/:authorname" element={<AuthorDetail />} />
+            <Route path="/author/create" element={<AuthorForm />} />
+            <Route path="/author/:authorid/update" element={<AuthorUpdateForm />} />
+
           </Routes>
         </PagesWrapper>
       </BrowserRouter>

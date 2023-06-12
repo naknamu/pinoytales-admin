@@ -7,11 +7,13 @@ import {
   UpdateBtn,
   ButtonWrapper,
 } from "../components/StyledComponents";
+import { useNavigate } from "react-router";
 
 const AuthorDetail = () => {
   const { authorname } = useParams();
   const [author, setAuthor] = useState(null);
   const [tales, setTales] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAuthor = async () => {
@@ -24,9 +26,25 @@ const AuthorDetail = () => {
     fetchAuthor();
   }, [authorname]);
 
-  const handleDelete = async (authorname) => {
-    console.log("Delete author:" + authorname);
+  const handleDelete = async (authorid) => {
+    const response = await fetch(
+      `${config.apiUrl}/author/${authorid}/delete`,
+      {
+        method: "POST"
+      }
+    );
+    const data = await response.json();
+
+    if (response.ok) {
+      navigate("/authors");
+    } else {
+      console.error(data.error);
+    }
   };
+
+  const handleUpdate = (authorid) => {
+    navigate(`/author/${authorid}/update`);
+  }
 
   if (!author && !tales) {
     return <div>Loading....</div>;
@@ -46,11 +64,11 @@ const AuthorDetail = () => {
 
       <ButtonWrapper>
         <DeleteBtn onClick={() => handleDelete(author._id)}>
-          <Link to="/authors">Delete</Link>
+          Delete
         </DeleteBtn>
 
-        <UpdateBtn>
-          <Link to={`/author/${author._id}/update`}>Update</Link>
+        <UpdateBtn onClick={() => handleUpdate(author._id)}>
+          Update
         </UpdateBtn>
       </ButtonWrapper>
     </div>
